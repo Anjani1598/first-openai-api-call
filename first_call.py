@@ -1,6 +1,8 @@
 from openai import OpenAI
+from dotenv import load_dotenv
 
 import os
+load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
 
 client = OpenAI(
@@ -8,7 +10,7 @@ client = OpenAI(
 )
 
 
-user_input  = input("Enter your input: ")
+user_input  = input("Ask Anything : ")
 completion = client.chat.completions.create(
   model="gpt-4o-mini",
   store=True,
@@ -19,6 +21,6 @@ completion = client.chat.completions.create(
 )
 
 
-print("AI Message :",completion.choices[0].message.content)
+print("assistant’s reply :",completion.choices[0].message.content)
 print("token usage: ", completion.usage.total_tokens)
 
